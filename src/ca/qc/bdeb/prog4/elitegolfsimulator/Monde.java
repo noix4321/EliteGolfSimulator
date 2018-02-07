@@ -21,6 +21,7 @@ class Monde extends JPanel {
     private final int HAUTEUR = 600, LARGEUR = 1500;
     private Golfeur golfeur = new Golfeur();
     private Trou trou = new Trou();
+    private Drapeau drapeau = new Drapeau();
     private boolean boolGazon = true;
     private Image img1 = getToolkit().getDefaultToolkit().getImage("gazon1.png");
     private Image img2 = getToolkit().getDefaultToolkit().getImage("gazon2.png");
@@ -29,10 +30,8 @@ class Monde extends JPanel {
     public Monde() {
         setLayout(null);
         setPreferredSize(new Dimension(LARGEUR, HAUTEUR));
-        add(golfeur);
-        golfeur.setLocation(0, 3 * HAUTEUR / 4 - golfeur.getHeight());
-        add(trou);
-        trou.setLocation(LARGEUR - (5 * trou.getWidth()), (3 * HAUTEUR / 4) - trou.getHeight());;
+        mettreGolfeurTrouDrapeau();
+        
     }
 
     @Override
@@ -57,6 +56,15 @@ class Monde extends JPanel {
             }
         }
 
+    }
+
+    private void mettreGolfeurTrouDrapeau() {
+        add(golfeur);
+        golfeur.setLocation(0, 3 * HAUTEUR / 4 - golfeur.getHeight());
+        add(trou);
+        trou.setLocation(LARGEUR - (5 * trou.getWidth()), (3 * HAUTEUR / 4) - trou.getHeight());
+        add(drapeau);
+        drapeau.setLocation(trou.getX() + trou.getWidth()/2, trou.getY() - drapeau.getHeight());
     }
 
 }
