@@ -70,4 +70,14 @@ class Monde extends JPanel {
         balle.setLocation(golfeur.getX() + golfeur.getWidth()/2, golfeur.getY() + golfeur.getHeight() - balle.getHeight());
     }
 
+    public int getLARGEUR() {
+        return LARGEUR;
+    }
+
+    public int getHAUTEUR() {
+        return HAUTEUR;
+    }
+
+    
+    
 }

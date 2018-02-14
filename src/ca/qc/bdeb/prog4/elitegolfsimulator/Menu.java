@@ -27,8 +27,10 @@ public class Menu extends JFrame {
     private JButton btnOptions = new JButton("Options...");
     private JButton btnInfo = new JButton("Regle du Jeu");
     private JButton btnQuitter = new JButton("Quitter");
-
+    private Monde monde = new Monde();
+    
     public Menu() {
+
         setTitle("Bonjour bienvenue au jeu big boyyyyy");
         setVisible(true);
         //setLayout(new FlowLayout());
@@ -58,6 +60,6 @@ public class Menu extends JFrame {
         //setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-    }
 
+    }
 }
