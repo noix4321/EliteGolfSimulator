@@ -76,36 +76,37 @@ class Fenetre extends JFrame {
         mnuDifficulté.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[] options = {"Débutant", "Intermédiaire", "Expert", "Hard en tabarnack"};
-                int optionPane = JOptionPane.showOptionDialog(null,
-                        "Choisisser une difficulté?",
-                        "Menu option",
-                        JOptionPane.YES_NO_CANCEL_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        options,
-                        options[3]);
-
-                switch (optionPane) {
-                    case YES_OPTION: { //option 7x7 du JOptionPane
-
-                    }
-                    break;
-                    case NO_OPTION: { //option 6x6 du JOptionPane
-
-                    }
-                    break;
-                    case CANCEL_OPTION: { //option 5x5 du JOptionPane
-
-                    }
-                    break;
-                    default: { //option 4x4 du JOptionPane
-
-                    }
-                    break;
-                }
-                invalidate();
-                repaint();
+                menu.choixDifficulte();
+//                Object[] options = {"Débutant", "Intermédiaire", "Expert", "Hard en tabarnack"};
+//                int optionPane = JOptionPane.showOptionDialog(null,
+//                        "Choisisser une difficulté?",
+//                        "Menu option",
+//                        JOptionPane.YES_NO_CANCEL_OPTION,
+//                        JOptionPane.QUESTION_MESSAGE,
+//                        null,
+//                        options,
+//                        options[3]);
+//
+//                switch (optionPane) {
+//                    case YES_OPTION: { //option 7x7 du JOptionPane
+//
+//                    }
+//                    break;
+//                    case NO_OPTION: { //option 6x6 du JOptionPane
+//
+//                    }
+//                    break;
+//                    case CANCEL_OPTION: { //option 5x5 du JOptionPane
+//
+//                    }
+//                    break;
+//                    default: { //option 4x4 du JOptionPane
+//
+//                    }
+//                    break;
+//                }
+//                invalidate();
+//                repaint();
             }
         });
     }
