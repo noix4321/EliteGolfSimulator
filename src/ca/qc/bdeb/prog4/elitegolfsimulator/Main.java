@@ -15,9 +15,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        Fenetre fenetre = new Fenetre();
+
+        // Fenetre fenetre = new Fenetre();
+        Menu menu = new Menu();
         //francais yaime pas sa faire un github
     }
-    
+
 }
