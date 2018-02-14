@@ -18,7 +18,6 @@ public class Main {
         
         //Menu menu = new Menu();
         Fenetre fenetre = new Fenetre();
-        //francais yaime pas sa faire un githubhfrh
     }
     
 }
