@@ -9,12 +9,18 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.CANCEL_OPTION;
 import static javax.swing.JOptionPane.NO_OPTION;
@@ -27,63 +33,56 @@ import javax.swing.JPanel;
  */
 public class Menu extends JFrame {
 
-    //private MondeMenu mondeMenu = new MondeMenu();
     private JPanel pnlPrincipal = new JPanel();
     private JButton btnNouvellePartie = new JButton("Nouvelle Partie...");
     private JButton btnOptions = new JButton("Options...");
     private JButton btnInfo = new JButton("Regle du Jeu");
     private JButton btnQuitter = new JButton("Quitter");
-    private Monde monde = new Monde();
+    private Monde monde;
+    Image img = getToolkit().getDefaultToolkit().getImage("golfeur.gif");
+    ImageIcon icon = new ImageIcon("ciel.png");
 
     public Menu() {
         setTitle("Bonjour bienvenue au jeu big boyyyyy");
         setVisible(true);
-        //setLayout(new FlowLayout());
 
-        btnNouvellePartie.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnOptions.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnQuitter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        pnlPrincipal.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        btnNouvellePartie.setAlignmentY(Component.CENTER_ALIGNMENT);
-        btnOptions.setAlignmentY(Component.CENTER_ALIGNMENT);
-        btnInfo.setAlignmentY(Component.CENTER_ALIGNMENT);
-        btnQuitter.setAlignmentY(Component.CENTER_ALIGNMENT);
-
-        pnlPrincipal.setLayout(new BoxLayout(pnlPrincipal, BoxLayout.Y_AXIS));
-        pnlPrincipal.add(btnNouvellePartie);
-        pnlPrincipal.add(btnInfo);
-        pnlPrincipal.add(btnOptions);
-        pnlPrincipal.add(btnQuitter);
+        pnlPrincipal.add(btnNouvellePartie, gbc);
+        pnlPrincipal.add(btnInfo, gbc);
+        pnlPrincipal.add(btnOptions, gbc);
+        pnlPrincipal.add(btnQuitter, gbc);
         add(pnlPrincipal);
-
-        //add(mondeMenu);
-        setPreferredSize(new Dimension(500, 500));
-        setLocationRelativeTo(null);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        pack();
         evenements();
-        //setResizable(false);
+
+        setPreferredSize(new Dimension(500, 500));
+
+        pack();
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-    
-    private void evenements(){
+
+    public void evenements() {
         btnNouvellePartie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 choixDifficulte();
             }
         });
+        btnInfo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                JOptionPane.showMessageDialog(null, "Francis Guay, date de remise ; 15 octobre 2017", "Regles",
+                        JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+        });
     }
 
-//    @Override
-//    protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//       
-//        g.drawImage(img1, 0, 0, this);
-//
-//    }
-    protected void choixDifficulte() {
+    public void choixDifficulte() {
 
         Object[] options = {"Debutant", "Intermediaire", "Avance", "Expert"};
         int optionPane = JOptionPane.showOptionDialog(null,
@@ -97,10 +96,12 @@ public class Menu extends JFrame {
 
         switch (optionPane) {
             case YES_OPTION: { //option debutant du JOptionPane
-                setLayout(null);
+                /*setLayout(null);
                 setPreferredSize(new Dimension(1500, 600));
                 add(monde);
-                setVisible(true);
+                
+                setVisible(true);*/
+                nouvellePartie();
                 System.out.println("hbveby");
             }
             break;
@@ -117,6 +118,14 @@ public class Menu extends JFrame {
             }
             break;
         }
+
+    }
+
+    public void nouvellePartie() {
+        Fenetre fen = new Fenetre();
+        fen.setVisible(true);
+
+        dispose();
 
     }
 }

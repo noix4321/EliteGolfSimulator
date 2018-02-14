@@ -26,7 +26,6 @@ import javax.swing.JPanel;
 class Fenetre extends JFrame {
 
     private Monde monde = new Monde();
-    private Menu menu = new Menu();
     private int coups = 0, trou = 1;
     private JPanel pnlNord = new JPanel();
     private JLabel lblCoups = new JLabel("Coups : " + coups);
@@ -41,7 +40,7 @@ class Fenetre extends JFrame {
 
     public Fenetre() {
         setTitle("Elite Golf Simulator");
-        setVisible(true);
+        setVisible(false);
         setLayout(new BorderLayout());
         mettrePanels();
         mettreMenus();
@@ -54,7 +53,6 @@ class Fenetre extends JFrame {
     private void mettrePanels() {
         pnlNord.setLayout(new BorderLayout());
         add(pnlNord, BorderLayout.NORTH);
-        add(menu);
         add(monde);
         pnlNord.add(lblCoups, BorderLayout.WEST);
         pnlNord.add(lblTrou, BorderLayout.EAST);
@@ -76,7 +74,7 @@ class Fenetre extends JFrame {
         mnuDifficulté.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menu.choixDifficulte();
+                //menu.choixDifficulte();
 //                Object[] options = {"Débutant", "Intermédiaire", "Expert", "Hard en tabarnack"};
 //                int optionPane = JOptionPane.showOptionDialog(null,
 //                        "Choisisser une difficulté?",
