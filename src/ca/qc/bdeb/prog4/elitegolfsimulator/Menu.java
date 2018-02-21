@@ -9,10 +9,12 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
@@ -38,9 +40,6 @@ public class Menu extends JFrame {
     private JButton btnOptions = new JButton("Options...");
     private JButton btnInfo = new JButton("Regle du Jeu");
     private JButton btnQuitter = new JButton("Quitter");
-    private Monde monde;
-    Image img = getToolkit().getDefaultToolkit().getImage("golfeur.gif");
-    ImageIcon icon = new ImageIcon("ciel.png");
 
     public Menu() {
         setTitle("Bonjour bienvenue au jeu big boyyyyy");
@@ -50,18 +49,18 @@ public class Menu extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-
+        gbc.insets = new Insets(8, 0, 8, 0);
         pnlPrincipal.add(btnNouvellePartie, gbc);
         pnlPrincipal.add(btnInfo, gbc);
         pnlPrincipal.add(btnOptions, gbc);
         pnlPrincipal.add(btnQuitter, gbc);
+
         add(pnlPrincipal);
-        evenements();
 
         setPreferredSize(new Dimension(500, 500));
-
+        evenements();
         pack();
-
+        setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
@@ -77,7 +76,7 @@ public class Menu extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 JOptionPane.showMessageDialog(null, "Francis Guay, date de remise ; 15 octobre 2017", "Regles",
-                        JOptionPane.INFORMATION_MESSAGE, icon);
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }
@@ -124,8 +123,8 @@ public class Menu extends JFrame {
     public void nouvellePartie() {
         Fenetre fen = new Fenetre();
         fen.setVisible(true);
-
         dispose();
 
     }
+
 }

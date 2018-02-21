@@ -5,6 +5,8 @@
  */
 package ca.qc.bdeb.prog4.elitegolfsimulator;
 
+import java.io.IOException;
+
 /**
  *
  * @author 1533727
@@ -14,10 +16,11 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)throws IOException{
 
         
         Menu menu = new Menu();
+        //  MenuTest menu=new MenuTest();
         //Fenetre fenetre = new Fenetre();
     }
 
