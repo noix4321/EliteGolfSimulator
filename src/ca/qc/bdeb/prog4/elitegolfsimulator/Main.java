@@ -16,10 +16,10 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args)throws IOException{
+    public static void main(String[] args) throws IOException {
 
         Menu menu = new Menu();
-        //  MenuTest menu=new MenuTest();
+        //MenuTest menu = new MenuTest();
         //Fenetre fenetre = new Fenetre();
         //francais yaime pas sa faire un githubhfrh
     }

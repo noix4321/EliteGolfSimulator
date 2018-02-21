@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 class Fenetre extends JFrame{
 
     private Monde monde = new Monde();
-    private Menu menu = new Menu();
+    //private Menu menu = new Menu();
     private int coups = 0, trou = 1;
     private JPanel pnlNord = new JPanel();
     private JLabel lblCoups = new JLabel("Coups : " + coups);
@@ -47,7 +47,7 @@ class Fenetre extends JFrame{
     private void mettrePanels() {
         pnlNord.setLayout(new BorderLayout());
         add(pnlNord, BorderLayout.NORTH);
-        add(menu);
+        //add(menu);
         //add(monde);
         pnlNord.add(lblCoups, BorderLayout.WEST);
         pnlNord.add(lblTrou, BorderLayout.EAST);

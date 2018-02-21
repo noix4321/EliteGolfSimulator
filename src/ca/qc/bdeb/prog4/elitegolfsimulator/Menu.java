@@ -5,23 +5,15 @@
  */
 package ca.qc.bdeb.prog4.elitegolfsimulator;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -46,13 +38,12 @@ public class Menu extends JFrame {
 
             @Override
             protected void paintComponent(Graphics g) {
-                super.paintComponent(g); 
+                super.paintComponent(g);
                 g.drawImage(image, 0, 0, null);
             }
 
         });
-        
-        
+
         setTitle("Bonjour bienvenue au jeu big boyyyyy");
         setVisible(true);
 
