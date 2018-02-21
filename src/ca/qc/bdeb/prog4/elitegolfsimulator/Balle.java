@@ -15,6 +15,10 @@ import javax.swing.JComponent;
  */
 public class Balle extends JComponent{
 
+    private boolean bouger = false;
+    private int deltaX = 4, deltaY = 4;
+    private int HAUTEUR = 0, LARGEUR = 0;
+    
     public Balle() {
         setSize(10, 10);
     }
@@ -26,8 +30,33 @@ public class Balle extends JComponent{
         g.setColor(Color.white);
         g.fillOval(0, 0, 10, 10);
         
+//        if(bouger){
+//            
+//            for (int i = 0; i < 25; i++) {
+//              g.drawLine(getX(),getY(),getX() + 15,getY() + 15);  
+//            }
+//            
+//        }
+        
     }
     
+    public void bouger(){
+        setLocation(getX() + deltaX, getY() - deltaY);
+        if(getY() <= 100){
+            setLocation(getX() + deltaX, getY() + deltaY);
+        }
+//        else if(getY() >= HAUTEUR - HAUTEUR / 3){
+//            setLocation(getX() + deltaX, getY());
+//        }
+    }
+    
+    public void setHAUTEUR(int hauteur){
+        this.HAUTEUR = hauteur;
+    }
+
+    public void setLARGEUR(int LARGEUR) {
+        this.LARGEUR = LARGEUR;
+    }
     
     
 }

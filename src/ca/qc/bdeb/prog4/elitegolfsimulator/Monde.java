@@ -27,12 +27,35 @@ class Monde extends JPanel {
     private Image img1 = getToolkit().getDefaultToolkit().getImage("gazon1.png");
     private Image img2 = getToolkit().getDefaultToolkit().getImage("gazon2.png");
     private Image img3 = getToolkit().getDefaultToolkit().getImage("ciel.png");
+    private Thread thread;
 
     public Monde() {
+
+        this.thread = new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    
+                    balle.bouger();
+                    
+                    
+                    
+                    
+                    
+                    try {
+                        Thread.sleep(25);
+                    } catch (InterruptedException exc) {
+
+                    }
+                }
+            }
+        };
         setLayout(null);
+        
         setPreferredSize(new Dimension(LARGEUR, HAUTEUR));
         mettreGolfeurTrouDrapeau();
-        
+        thread.start();
+        setVisible(true);
     }
 
     @Override
@@ -65,9 +88,9 @@ class Monde extends JPanel {
         add(trou);
         trou.setLocation(LARGEUR - (5 * trou.getWidth()), (3 * HAUTEUR / 4) - trou.getHeight());
         add(drapeau);
-        drapeau.setLocation(trou.getX() + trou.getWidth()/2, trou.getY() - drapeau.getHeight());
+        drapeau.setLocation(trou.getX() + trou.getWidth() / 2, trou.getY() - drapeau.getHeight());
         add(balle);
-        balle.setLocation(golfeur.getX() + golfeur.getWidth()/2, golfeur.getY() + golfeur.getHeight() - balle.getHeight());
+        balle.setLocation(golfeur.getX() + golfeur.getWidth() / 2, golfeur.getY() + golfeur.getHeight() - balle.getHeight());
     }
 
     public int getLARGEUR() {
@@ -78,6 +101,8 @@ class Monde extends JPanel {
         return HAUTEUR;
     }
 
-    
+    public void initialisateur(){
+        balle.setHAUTEUR(HAUTEUR);
+    }
     
 }

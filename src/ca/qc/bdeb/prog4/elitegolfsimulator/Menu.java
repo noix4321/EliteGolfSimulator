@@ -10,12 +10,22 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.CANCEL_OPTION;
+import static javax.swing.JOptionPane.NO_OPTION;
+import static javax.swing.JOptionPane.YES_OPTION;
 import javax.swing.JPanel;
 
 /**
@@ -60,10 +70,72 @@ public class Menu extends JFrame {
         add(pnlPrincipal);
 
         setPreferredSize(new Dimension(500, 500));
-
+        evenements();
         pack();
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    public void evenements() {
+        btnNouvellePartie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                choixDifficulte();
+            }
+        });
+        btnInfo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                JOptionPane.showMessageDialog(null, "Francis Guay, date de remise ; 15 octobre 2017", "Regles",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+    }
+
+    public void choixDifficulte() {
+
+        Object[] options = {"Debutant", "Intermediaire", "Avance", "Expert"};
+        int optionPane = JOptionPane.showOptionDialog(null,
+                "Choisisser une difficulté?",
+                "Menu option",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[3]);
+
+        switch (optionPane) {
+            case YES_OPTION: { //option debutant du JOptionPane
+                /*setLayout(null);
+                setPreferredSize(new Dimension(1500, 600));
+                add(monde);
+                
+                setVisible(true);*/
+                nouvellePartie();
+                System.out.println("hbveby");
+            }
+            break;
+            case NO_OPTION: { //option intermediaire du JOptionPane
+
+            }
+            break;
+            case CANCEL_OPTION: { //option avance du JOptionPane
+
+            }
+            break;
+            default: { //option expert JOptionPane
+
+            }
+            break;
+        }
+
+    }
+
+    public void nouvellePartie() {
+        Fenetre fen = new Fenetre();
+        fen.setVisible(true);
+        dispose();
 
     }
 
