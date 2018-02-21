@@ -16,11 +16,12 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args)throws IOException{
+    public static void main(String[] args) throws IOException {
 
         
-        Menu menu = new Menu();
-        //  MenuTest menu=new MenuTest();
+        //Menu menu = new Menu();
+        RealMenu menu=new RealMenu();
+        menu.setVisible(true);
         //Fenetre fenetre = new Fenetre();
     }
 
