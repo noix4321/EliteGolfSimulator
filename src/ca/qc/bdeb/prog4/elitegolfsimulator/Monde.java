@@ -5,10 +5,12 @@
  */
 package ca.qc.bdeb.prog4.elitegolfsimulator;
 
+import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import javafx.scene.control.SplitPane;
 import javax.swing.JPanel;
 
@@ -24,22 +26,29 @@ class Monde extends JPanel {
     private Drapeau drapeau = new Drapeau();
     private Balle balle = new Balle();
     private boolean boolGazon = true;
+    private ArrayList<Integer> listKeyCodes = new ArrayList<>();
     private Image img1 = getToolkit().getDefaultToolkit().getImage("gazon1.png");
     private Image img2 = getToolkit().getDefaultToolkit().getImage("gazon2.png");
     private Image img3 = getToolkit().getDefaultToolkit().getImage("ciel.png");
     private Thread thread;
+    private boolean bouge = false;
     private int compteur = 0;
     private Arc arc = new Arc();
 
-    public Monde() {
+    public Monde(ArrayList listKeyCodes) {
+
+        this.listKeyCodes = listKeyCodes;
 
         this.thread = new Thread() {
             @Override
             public void run() {
                 while (true) {
                     compteur++;
-                    balle.bouger();
-                    if (compteur % 30 == 0) {
+                    verifierTouche();
+                    if (bouge) {
+                        balle.bouger();
+                    }
+                    if (compteur % 50 == 0) {
                         balle.setDeltaY(balle.getDeltaY() + 1);
                         if (balle.getDeltaY() == 0) {
                             if (balle.getY() <= 3) {
@@ -70,6 +79,7 @@ class Monde extends JPanel {
                 }
             }
         };
+
         setLayout(null);
 
         setPreferredSize(new Dimension(LARGEUR, HAUTEUR));
@@ -102,6 +112,17 @@ class Monde extends JPanel {
         }
         
 
+    }
+
+    private void frapperBall() {
+        bouge = true;
+
+    }
+
+    private void verifierTouche() {
+        if (listKeyCodes.contains(KeyEvent.VK_SPACE)) {
+            frapperBall();
+        }
     }
 
     private void mettreGolfeurTrouDrapeau() {
