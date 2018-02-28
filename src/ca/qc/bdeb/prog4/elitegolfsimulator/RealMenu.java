@@ -51,16 +51,16 @@ public class RealMenu extends javax.swing.JFrame {
         jButton1.setText("Nouvelle partie...");
         jButton1.setAlignmentY(0.0F);
         getContentPane().add(jButton1);
-        jButton1.setBounds(190, 200, 110, 23);
+        jButton1.setBounds(190, 200, 120, 23);
 
         jButton2.setText("Options...");
         jButton2.setAlignmentY(0.0F);
         getContentPane().add(jButton2);
-        jButton2.setBounds(190, 230, 110, 23);
+        jButton2.setBounds(190, 230, 120, 23);
 
         jButton3.setText("Info...");
         getContentPane().add(jButton3);
-        jButton3.setBounds(190, 260, 110, 23);
+        jButton3.setBounds(190, 260, 120, 23);
 
         jButton4.setText("Quitter");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -69,12 +69,12 @@ public class RealMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(190, 290, 110, 23);
+        jButton4.setBounds(190, 290, 120, 23);
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\1667686\\Desktop\\Elite Golf Simulator\\EliteGolfSimulator\\allo.png")); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 499, 500);
+        jLabel2.setBounds(0, 0, 499, 430);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -119,7 +119,7 @@ public class RealMenu extends javax.swing.JFrame {
     }
 
     public void nouvellePartie() {
-        Fenetre fen = new Fenetre();
+        Vue fen = new Vue();
         fen.setVisible(true);
         dispose();
 

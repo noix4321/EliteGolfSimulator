@@ -133,7 +133,7 @@ public class Menu extends JFrame {
     }
 
     public void nouvellePartie() {
-        Fenetre fen = new Fenetre();
+        Vue fen = new Vue();
         fen.setVisible(true);
         dispose();
 
