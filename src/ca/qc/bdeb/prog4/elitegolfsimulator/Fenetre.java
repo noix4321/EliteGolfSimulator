@@ -39,7 +39,7 @@ class Fenetre extends JFrame{
         setLayout(new BorderLayout());
         mettrePanels();
         mettreMenus();
-        setResizable(false);
+        //setResizable(false);
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

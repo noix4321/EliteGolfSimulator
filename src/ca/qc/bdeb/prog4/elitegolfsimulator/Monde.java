@@ -29,6 +29,7 @@ class Monde extends JPanel {
     private Image img3 = getToolkit().getDefaultToolkit().getImage("ciel.png");
     private Thread thread;
     private int compteur = 0;
+    private Arc arc = new Arc();
 
     public Monde() {
 
@@ -38,13 +39,26 @@ class Monde extends JPanel {
                 while (true) {
                     compteur++;
                     balle.bouger();
-                    if (compteur % 50 == 0) {
+                    if (compteur % 30 == 0) {
                         balle.setDeltaY(balle.getDeltaY() + 1);
-                        if (balle.getY() <= 100) {
+                        if (balle.getDeltaY() == 0) {
                             if (balle.getY() <= 3) {
                                 balle.setDeltaY(balle.getDeltaY() - 1);
                             }
 
+                        }
+                        if (balle.getY() >= (3 * HAUTEUR / 4) - trou.getHeight()) {
+//                            balle.setDeltaY(0);
+                            balle.setDeltaY(-1);
+                            if (balle.getDeltaY() == 0) {
+                                if (balle.getY() <= 2) {
+                                    balle.setDeltaY(balle.getDeltaY() + 1);
+                                }
+
+                            }
+                        }
+                        if (balle.getX() >= LARGEUR - (5 * trou.getWidth())) {
+                            balle.setDeltaX(0);
                         }
                     }
 
@@ -67,6 +81,7 @@ class Monde extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
         g.drawImage(img3, LARGEUR - 1920, HAUTEUR - 1200, this);
         for (int i = 0; i < LARGEUR; i += 16) {
             for (int j = HAUTEUR - HAUTEUR / 3; j < HAUTEUR; j += 16) {
@@ -85,6 +100,7 @@ class Monde extends JPanel {
 
             }
         }
+        
 
     }
 
@@ -97,6 +113,8 @@ class Monde extends JPanel {
         drapeau.setLocation(trou.getX() + trou.getWidth() / 2, trou.getY() - drapeau.getHeight());
         add(balle);
         balle.setLocation(golfeur.getX() + golfeur.getWidth() / 2, golfeur.getY() + golfeur.getHeight() - balle.getHeight());
+        add(arc);
+        arc.setLocation(0 , 180);
     }
 
     public int getLARGEUR() {
