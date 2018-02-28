@@ -71,7 +71,7 @@ public class RealMenu extends javax.swing.JFrame {
         getContentPane().add(jButton4);
         jButton4.setBounds(190, 290, 110, 23);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\1667686\\Desktop\\Elite Golf Simulator\\EliteGolfSimulator\\allo.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("H:\\Prog4\\Elite Golf Simulator\\EliteGolfSimulator\\allo.png")); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 499, 500);

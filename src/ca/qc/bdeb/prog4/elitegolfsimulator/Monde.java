@@ -28,6 +28,7 @@ class Monde extends JPanel {
     private Image img2 = getToolkit().getDefaultToolkit().getImage("gazon2.png");
     private Image img3 = getToolkit().getDefaultToolkit().getImage("ciel.png");
     private Thread thread;
+    private int compteur = 0;
 
     public Monde() {
 
@@ -35,13 +36,18 @@ class Monde extends JPanel {
             @Override
             public void run() {
                 while (true) {
-                    
+                    compteur++;
                     balle.bouger();
-                    
-                    
-                    
-                    
-                    
+                    if (compteur % 50 == 0) {
+                        balle.setDeltaY(balle.getDeltaY() + 1);
+                        if (balle.getY() <= 100) {
+                            if (balle.getY() <= 3) {
+                                balle.setDeltaY(balle.getDeltaY() - 1);
+                            }
+
+                        }
+                    }
+
                     try {
                         Thread.sleep(25);
                     } catch (InterruptedException exc) {
@@ -51,7 +57,7 @@ class Monde extends JPanel {
             }
         };
         setLayout(null);
-        
+
         setPreferredSize(new Dimension(LARGEUR, HAUTEUR));
         mettreGolfeurTrouDrapeau();
         thread.start();
@@ -101,8 +107,8 @@ class Monde extends JPanel {
         return HAUTEUR;
     }
 
-    public void initialisateur(){
+    public void initialisateur() {
         balle.setHAUTEUR(HAUTEUR);
     }
-    
+
 }

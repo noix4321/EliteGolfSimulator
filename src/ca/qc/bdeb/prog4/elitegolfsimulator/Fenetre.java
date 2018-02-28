@@ -47,8 +47,7 @@ class Fenetre extends JFrame{
     private void mettrePanels() {
         pnlNord.setLayout(new BorderLayout());
         add(pnlNord, BorderLayout.NORTH);
-        //add(menu);
-        //add(monde);
+        add(monde);
         pnlNord.add(lblCoups, BorderLayout.WEST);
         pnlNord.add(lblTrou, BorderLayout.EAST);
     }
