@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca.qc.bdeb.prog4.elitegolfsimulator;
+package ca.qc.bdeb.prog4.elitegolfsimulator.vue;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,20 +13,20 @@ import javax.swing.JComponent;
  *
  * @author 1533727
  */
-public class Arc extends JComponent{
+public class Drapeau extends JComponent{
 
-     private final int HAUTEUR = 600, LARGEUR = 1500;
-    
-    public Arc() {
-        setSize(1500, 600);
-        
+    public Drapeau() {
+        setSize(20, 65);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
+        
+        g.drawLine(0, 0, 0, 65);
         g.setColor(Color.red);
-        g.drawArc(0, 0, LARGEUR, HAUTEUR+400, 30, 120);
+        g.fillRect(0, 0, 20, 15);
+        
     }
     
     

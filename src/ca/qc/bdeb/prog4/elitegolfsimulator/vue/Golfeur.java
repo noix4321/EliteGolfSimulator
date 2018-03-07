@@ -3,26 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca.qc.bdeb.prog4.elitegolfsimulator;
+package ca.qc.bdeb.prog4.elitegolfsimulator.vue;
 
+import static com.sun.javafx.tk.Toolkit.getToolkit;
 import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.JComponent;
 
 /**
  *
  * @author 1533727
  */
-public class Trou extends JComponent{
+public class Golfeur extends JComponent{
 
-    public Trou() {
-        setSize(15, 15);
+     Image img = getToolkit().getDefaultToolkit().getImage("golfeur.gif");
+    
+    public Golfeur() {
+        setSize(134, 106);
     }
     
      @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); 
         
-        g.fillOval(0, 0, 15, 15);
+        g.drawImage(img, 0, 0, this);
     }
     
 }

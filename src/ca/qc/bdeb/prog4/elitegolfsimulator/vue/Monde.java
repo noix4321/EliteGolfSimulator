@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca.qc.bdeb.prog4.elitegolfsimulator;
+package ca.qc.bdeb.prog4.elitegolfsimulator.vue;
 
 import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
@@ -12,6 +12,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 import javafx.scene.control.SplitPane;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -21,6 +22,8 @@ import javax.swing.JPanel;
 class Monde extends JPanel {
 
     private final int HAUTEUR = 600, LARGEUR = 1500;
+    private int coups = 0, trous = 1;
+    //private Vue vue = new Vue();
     private Golfeur golfeur = new Golfeur();
     private Trou trou = new Trou();
     private Drapeau drapeau = new Drapeau();
@@ -30,9 +33,10 @@ class Monde extends JPanel {
     private Image img1 = getToolkit().getDefaultToolkit().getImage("gazon1.png");
     private Image img2 = getToolkit().getDefaultToolkit().getImage("gazon2.png");
     private Image img3 = getToolkit().getDefaultToolkit().getImage("ciel.png");
+    private JLabel nbrCoups = new JLabel();
     private Thread thread;
     private boolean bouge = false;
-    private int compteur = 0;
+    private int compteur = 1;
     private Arc arc = new Arc();
 
     public Monde(ArrayList listKeyCodes) {
@@ -43,10 +47,10 @@ class Monde extends JPanel {
             @Override
             public void run() {
                 while (true) {
-                    compteur++;
                     verifierTouche();
                     if (bouge) {
                         balle.bouger();
+                        compteur++;
                     }
                     if (compteur % 50 == 0) {
                         balle.setDeltaY(balle.getDeltaY() + 1);
@@ -56,7 +60,7 @@ class Monde extends JPanel {
                             }
 
                         }
-                        if (balle.getY() >= (3 * HAUTEUR / 4) - trou.getHeight()) {
+                        if (balle.getY() <= (3 * HAUTEUR / 4) - trou.getHeight()) {
 //                            balle.setDeltaY(0);
                             balle.setDeltaY(-1);
                             if (balle.getDeltaY() == 0) {
@@ -82,6 +86,8 @@ class Monde extends JPanel {
 
         setLayout(null);
 
+        afficherPoint(0);
+
         setPreferredSize(new Dimension(LARGEUR, HAUTEUR));
         mettreGolfeurTrouDrapeau();
         thread.start();
@@ -91,7 +97,7 @@ class Monde extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+
         g.drawImage(img3, LARGEUR - 1920, HAUTEUR - 1200, this);
         for (int i = 0; i < LARGEUR; i += 16) {
             for (int j = HAUTEUR - HAUTEUR / 3; j < HAUTEUR; j += 16) {
@@ -110,7 +116,6 @@ class Monde extends JPanel {
 
             }
         }
-        
 
     }
 
@@ -119,9 +124,18 @@ class Monde extends JPanel {
 
     }
 
+    public void afficherPoint(int coups) {
+        nbrCoups.setText("Points: " + coups);
+        nbrCoups.setSize(100, 60);
+        this.add(nbrCoups);
+        nbrCoups.setLocation(200, 2 - 0);
+    }
+
     private void verifierTouche() {
         if (listKeyCodes.contains(KeyEvent.VK_SPACE)) {
             frapperBall();
+            
+         
         }
     }
 
@@ -135,7 +149,19 @@ class Monde extends JPanel {
         add(balle);
         balle.setLocation(golfeur.getX() + golfeur.getWidth() / 2, golfeur.getY() + golfeur.getHeight() - balle.getHeight());
         add(arc);
-        arc.setLocation(0 , 180);
+        arc.setLocation(0, 180);
+    }
+
+    public int getTrou() {
+        return trous;
+    }
+
+    public JLabel getnbrCoups() {
+        return nbrCoups;
+    }
+
+    public int getCoups() {
+        return coups;
     }
 
     public int getLARGEUR() {

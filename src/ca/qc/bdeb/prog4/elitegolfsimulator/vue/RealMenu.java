@@ -1,10 +1,13 @@
+package ca.qc.bdeb.prog4.elitegolfsimulator.vue;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca.qc.bdeb.prog4.elitegolfsimulator;
 
+
+import ca.qc.bdeb.prog4.elitegolfsimulator.modele.Modele;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -18,9 +21,7 @@ import static javax.swing.JOptionPane.YES_OPTION;
  */
 public class RealMenu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form RealMenu
-     */
+    Modele modele=new Modele();
     public RealMenu() {
         initComponents();
         evenements();
@@ -44,7 +45,6 @@ public class RealMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Waddup boii");
         setPreferredSize(new java.awt.Dimension(500, 500));
-        setResizable(false);
         setSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
@@ -133,7 +133,7 @@ public class RealMenu extends javax.swing.JFrame {
     }
 
     public void nouvellePartie() {
-        Vue fen = new Vue();
+        Vue fen = new Vue(this,modele);
         fen.setVisible(true);
         dispose();
 
