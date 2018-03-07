@@ -50,17 +50,24 @@ public class RealMenu extends javax.swing.JFrame {
 
         jButton1.setText("Nouvelle partie...");
         jButton1.setAlignmentY(0.0F);
+        jButton1.setMaximumSize(new java.awt.Dimension(220, 23));
+        jButton1.setMinimumSize(new java.awt.Dimension(220, 23));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
-        jButton1.setBounds(190, 200, 120, 23);
+        jButton1.setBounds(190, 200, 130, 23);
 
         jButton2.setText("Options...");
         jButton2.setAlignmentY(0.0F);
         getContentPane().add(jButton2);
-        jButton2.setBounds(190, 230, 120, 23);
+        jButton2.setBounds(190, 230, 130, 23);
 
         jButton3.setText("Info...");
         getContentPane().add(jButton3);
-        jButton3.setBounds(190, 260, 120, 23);
+        jButton3.setBounds(190, 260, 130, 23);
 
         jButton4.setText("Quitter");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -69,12 +76,15 @@ public class RealMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(190, 290, 120, 23);
+        jButton4.setBounds(190, 290, 130, 23);
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\1667686\\Desktop\\Elite Golf Simulator\\EliteGolfSimulator\\allo.png")); // NOI18N
         jLabel2.setText("jLabel2");
+        jLabel2.setMaximumSize(new java.awt.Dimension(500, 500));
+        jLabel2.setMinimumSize(new java.awt.Dimension(500, 500));
+        jLabel2.setPreferredSize(new java.awt.Dimension(500, 500));
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 499, 430);
+        jLabel2.setBounds(0, -20, 630, 530);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -82,6 +92,10 @@ public class RealMenu extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
