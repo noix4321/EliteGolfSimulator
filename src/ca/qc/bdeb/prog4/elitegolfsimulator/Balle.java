@@ -32,6 +32,8 @@ public class Balle extends JComponent{
         
         g.setColor(Color.white);
         g.fillOval(0, 0, 10, 10);
+        g.setColor(Color.red);
+        g.drawArc(0, HAUTEUR, LARGEUR, HAUTEUR/2, 45, 45);
         
     }
     
@@ -64,6 +66,10 @@ public class Balle extends JComponent{
 
     public int getDeltaY() {
         return deltaY;
+    }
+
+    public void setDeltaX(int deltaX) {
+        this.deltaX = deltaX;
     }
     
     
