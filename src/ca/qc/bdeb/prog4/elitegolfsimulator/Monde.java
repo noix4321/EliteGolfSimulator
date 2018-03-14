@@ -5,10 +5,12 @@
  */
 package ca.qc.bdeb.prog4.elitegolfsimulator;
 
+import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import javafx.scene.control.SplitPane;
 import javax.swing.JPanel;
 
@@ -24,20 +26,79 @@ class Monde extends JPanel {
     private Drapeau drapeau = new Drapeau();
     private Balle balle = new Balle();
     private boolean boolGazon = true;
+    private ArrayList<Integer> listKeyCodes = new ArrayList<>();
     private Image img1 = getToolkit().getDefaultToolkit().getImage("gazon1.png");
     private Image img2 = getToolkit().getDefaultToolkit().getImage("gazon2.png");
     private Image img3 = getToolkit().getDefaultToolkit().getImage("ciel.png");
+    private Thread thread;
+    private boolean bouge = false;
+    private int compteur = 1;
+    private Arc arc = new Arc();
 
-    public Monde() {
+    public Monde(ArrayList listKeyCodes) {
+
+        this.listKeyCodes = listKeyCodes;
+
+        this.thread = new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    
+                    verifierTouche();
+                    
+                    if (bouge) {
+                        
+                        balle.bouger();
+                        compteur++;
+                    }
+                    
+                    if (compteur % 50 == 0) {
+                        balle.setDeltaY(balle.getDeltaY() + 1);
+                        if (balle.getDeltaY() == 0) {
+                            if (balle.getY() <= 3) {
+                                balle.setDeltaY(balle.getDeltaY() - 1);
+                            }
+
+                        }
+                        if (balle.getY() <= (3 * HAUTEUR / 4) - trou.getHeight()) {
+                            System.out.println("descendre1");
+//                            balle.setDeltaY(0);
+                            balle.setDeltaY(-1);
+                            if (balle.getDeltaY() == 0) {
+                                System.out.println("descendre2");
+                                if (balle.getY() <= 2) {
+                                    System.out.println("descendre3");
+                                    balle.setDeltaY(balle.getDeltaY() + 1);
+                                }
+
+                            }
+                        }
+                        if (balle.getX() >= LARGEUR - (5 * trou.getWidth())) {
+                            balle.setDeltaX(0);
+                        }
+                    }
+
+                    try {
+                        Thread.sleep(25);
+                    } catch (InterruptedException exc) {
+
+                    }
+                }
+            }
+        };
+
         setLayout(null);
+
         setPreferredSize(new Dimension(LARGEUR, HAUTEUR));
         mettreGolfeurTrouDrapeau();
-        
+        thread.start();
+        setVisible(true);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
         g.drawImage(img3, LARGEUR - 1920, HAUTEUR - 1200, this);
         for (int i = 0; i < LARGEUR; i += 16) {
             for (int j = HAUTEUR - HAUTEUR / 3; j < HAUTEUR; j += 16) {
@@ -56,7 +117,19 @@ class Monde extends JPanel {
 
             }
         }
+        
 
+    }
+
+    private void frapperBall() {
+        bouge = true;
+
+    }
+
+    private void verifierTouche() {
+        if (listKeyCodes.contains(KeyEvent.VK_SPACE)) {
+            frapperBall();
+        }
     }
 
     private void mettreGolfeurTrouDrapeau() {
@@ -65,9 +138,23 @@ class Monde extends JPanel {
         add(trou);
         trou.setLocation(LARGEUR - (5 * trou.getWidth()), (3 * HAUTEUR / 4) - trou.getHeight());
         add(drapeau);
-        drapeau.setLocation(trou.getX() + trou.getWidth()/2, trou.getY() - drapeau.getHeight());
+        drapeau.setLocation(trou.getX() + trou.getWidth() / 2, trou.getY() - drapeau.getHeight());
         add(balle);
-        balle.setLocation(golfeur.getX() + golfeur.getWidth()/2, golfeur.getY() + golfeur.getHeight() - balle.getHeight());
+        balle.setLocation(golfeur.getX() + golfeur.getWidth() / 2, golfeur.getY() + golfeur.getHeight() - balle.getHeight());
+        add(arc);
+        arc.setLocation(0 , 180);
+    }
+
+    public int getLARGEUR() {
+        return LARGEUR;
+    }
+
+    public int getHAUTEUR() {
+        return HAUTEUR;
+    }
+
+    public void initialisateur() {
+        balle.setHAUTEUR(HAUTEUR);
     }
 
 }
