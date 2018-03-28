@@ -19,7 +19,7 @@ import javax.swing.JComponent;
 public class Balle extends JComponent{
 
     private boolean monter = true;
-    private int deltaX = 4, deltaY = -4;
+    private int deltaX = 4, deltaY = -2;
     private int HAUTEUR = 0, LARGEUR = 0;
     
     public Balle() {

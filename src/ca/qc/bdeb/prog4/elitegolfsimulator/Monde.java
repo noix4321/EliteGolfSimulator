@@ -32,7 +32,7 @@ class Monde extends JPanel {
     private Image img3 = getToolkit().getDefaultToolkit().getImage("ciel.png");
     private Thread thread;
     private boolean bouge = false;
-    private int compteur = 1;
+    private int compteur = 0;
     private Arc arc = new Arc();
 
     public Monde(ArrayList listKeyCodes) {
@@ -47,15 +47,16 @@ class Monde extends JPanel {
                     verifierTouche();
                     
                     if (bouge) {
-                        
-                        balle.bouger();
                         compteur++;
-                    }
+                        balle.bouger();
+                        
                     
                     if (compteur % 50 == 0) {
+                        
                         balle.setDeltaY(balle.getDeltaY() + 1);
                         if (balle.getDeltaY() == 0) {
-                            if (balle.getY() <= 3) {
+                            System.out.println("coucou");
+                            if (balle.getY() <= 5) {
                                 balle.setDeltaY(balle.getDeltaY() - 1);
                             }
 
@@ -63,10 +64,10 @@ class Monde extends JPanel {
                         if (balle.getY() <= (3 * HAUTEUR / 4) - trou.getHeight()) {
                             System.out.println("descendre1");
 //                            balle.setDeltaY(0);
-                            balle.setDeltaY(-1);
+                            balle.setDeltaY(+1);
                             if (balle.getDeltaY() == 0) {
                                 System.out.println("descendre2");
-                                if (balle.getY() <= 2) {
+                                if (balle.getY() >= 2) {
                                     System.out.println("descendre3");
                                     balle.setDeltaY(balle.getDeltaY() + 1);
                                 }
@@ -78,6 +79,7 @@ class Monde extends JPanel {
                         }
                     }
 
+                    }
                     try {
                         Thread.sleep(25);
                     } catch (InterruptedException exc) {
