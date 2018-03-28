@@ -20,7 +20,7 @@ public class Balle extends JComponent {
 
     private boolean monter = true;
     private double deltaX = 4, deltaY = -4;
-    private int velocityX = 1, velocityY;
+    private int velocityX = 30, velocityY = -40;
     private int gravity = 1;
     private int HAUTEUR = 0, LARGEUR = 0;
 
@@ -37,20 +37,6 @@ public class Balle extends JComponent {
         g.setColor(Color.red);
         g.drawArc(0, HAUTEUR, LARGEUR, HAUTEUR / 2, 45, 45);
 
-    }
-
-    public void bouger() {
-        this.velocityY = -10;
-        this.velocityX = +12;
-        //setLocation(getX() + deltaX, getY() + deltaY);
-//        if(monter){
-//            setLocation(getX() + deltaX, getY() - deltaY);
-//        }else if(!monter){
-//            
-//        }
-//        if(getY() <= 100){
-//            monter = false;
-//        }
     }
 
     public void setHAUTEUR(int hauteur) {
@@ -71,6 +57,10 @@ public class Balle extends JComponent {
 
     public int getVelocityX() {
         return velocityX;
+    }
+
+    public void VelocityGrave() {
+        this.velocityY++;
     }
 
     public void setVelocityY(int velocityY) {

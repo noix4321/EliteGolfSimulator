@@ -35,9 +35,7 @@ class Monde extends JPanel {
     private Image img3 = getToolkit().getDefaultToolkit().getImage("ciel.png");
     private JLabel nbrCoups = new JLabel();
     private Thread thread;
-    private int vitesseX = 50;
-    private int vitesseY = -40;
-    private int gravity = 1;
+
     private boolean bouge = false;
     private int compteur = 1;
     private Arc arc = new Arc();
@@ -53,11 +51,14 @@ class Monde extends JPanel {
                     verifierTouche();
                     if (bouge) {
                         if (compteur % 3 == 0) {
-                            balle.setLocation(vitesseX + balle.getX(), vitesseY + balle.getY());
+                            balle.setLocation(balle.getVelocityX() + balle.getX(), balle.getVelocityY() + balle.getY());
                         }
-                        System.out.println(vitesseY);
                         compteur++;
-                        vitesseY++;
+                        balle.VelocityGrave();
+                        if (balle.getY() > 426 && balle.getX() > 500) {
+                            balle.setVelocityY(0);
+                        }
+                        
                     }
 
                     try {
