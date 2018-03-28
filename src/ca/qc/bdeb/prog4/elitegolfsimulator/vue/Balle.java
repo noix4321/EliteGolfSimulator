@@ -19,8 +19,8 @@ import javax.swing.JComponent;
 public class Balle extends JComponent {
 
     private boolean monter = true;
-    private double deltaX = 4, deltaY = -4;
-    private int velocityX = 1, velocityY;
+    private int deltaX = 4, deltaY = -4;
+    private int posX = deltaX, posY = 0;
     private int gravity = 1;
     private int HAUTEUR = 0, LARGEUR = 0;
 
@@ -40,17 +40,15 @@ public class Balle extends JComponent {
     }
 
     public void bouger() {
-        this.velocityY = -10;
-        this.velocityX = +12;
         //setLocation(getX() + deltaX, getY() + deltaY);
-//        if(monter){
-//            setLocation(getX() + deltaX, getY() - deltaY);
-//        }else if(!monter){
-//            
-//        }
-//        if(getY() <= 100){
-//            monter = false;
-//        }
+        if(monter){
+            setLocation(getX() + posX, getY() - posY);
+        }else if(!monter){
+            
+        }
+        if(getY() <= 100){
+            monter = false;
+        }
     }
 
     public void setHAUTEUR(int hauteur) {
@@ -61,24 +59,12 @@ public class Balle extends JComponent {
         this.LARGEUR = LARGEUR;
     }
 
-    public void setDeltaY(double deltaY) {
+    public void setDeltaY(int deltaY) {
         this.deltaY = deltaY;
     }
 
     public double getDeltaY() {
         return deltaY;
-    }
-
-    public int getVelocityX() {
-        return velocityX;
-    }
-
-    public void setVelocityY(int velocityY) {
-        this.velocityY = velocityY;
-    }
-
-    public int getVelocityY() {
-        return velocityY;
     }
 
     public int getGravity() {
@@ -89,8 +75,26 @@ public class Balle extends JComponent {
         return deltaX;
     }
 
-    public void setDeltaX(double deltaX) {
+    public void setDeltaX(int deltaX) {
         this.deltaX = deltaX;
     }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+    
+    
 
 }
