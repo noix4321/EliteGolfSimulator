@@ -35,8 +35,8 @@ class Monde extends JPanel {
     private Image img3 = getToolkit().getDefaultToolkit().getImage("ciel.png");
     private JLabel nbrCoups = new JLabel();
     private Thread thread;
-    private int vitesseX = 0;
-    private int vitesseY = 0;
+    private int vitesseX = 50;
+    private int vitesseY = -40;
     private int gravity = 1;
     private boolean bouge = false;
     private int compteur = 1;
@@ -52,48 +52,16 @@ class Monde extends JPanel {
                 while (true) {
                     verifierTouche();
                     if (bouge) {
-                        //balle.bouger();
-                        vitesseX = 4;
-                        vitesseY = -8;
-                        compteur++;
-                    }
-                    if (compteur % 0.05 == 0) {
-                        vitesseY += gravity;
-                    }
-                    
-                    if (compteur % 3 == 0) {
-//                        balle.setDeltaY(balle.getDeltaY() + 1);
-//                        if (balle.getDeltaY() == 0) {
-//                            if (balle.getY() <= 3) {
-//                                balle.setDeltaY(balle.getDeltaY() - 1);
-//                            }
-//
-//                        }
-//                        if (balle.getY() <= (3 * HAUTEUR / 4) - trou.getHeight()) {
-////                            balle.setDeltaY(0);
-//                            balle.setDeltaY(-1);
-//                            if (balle.getDeltaY() == 0) {
-//                                if (balle.getY() <= 2) {
-//                                    balle.setDeltaY(balle.getDeltaY() + 1);
-//                                }
-//
-//                            }
-//                        }
-//                        if (balle.getX() >= LARGEUR - (5 * trou.getWidth())) {
-//                            balle.setDeltaX(0);
-//   
-
-                        balle.setLocation(vitesseX + balle.getX(), vitesseY + balle.getY());
-
-                        if (balle.getY() <= 200) {
-                            balle.setLocation(balle.getX(), 190);
-                            vitesseY = 0;
+                        if (compteur % 3 == 0) {
+                            balle.setLocation(vitesseX + balle.getX(), vitesseY + balle.getY());
                         }
-
+                        System.out.println(vitesseY);
+                        compteur++;
+                        vitesseY++;
                     }
 
                     try {
-                        Thread.sleep(25);
+                        Thread.sleep(30);
                     } catch (InterruptedException exc) {
 
                     }
