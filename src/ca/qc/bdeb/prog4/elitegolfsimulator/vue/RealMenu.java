@@ -45,6 +45,7 @@ public class RealMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Waddup boii");
         setPreferredSize(new java.awt.Dimension(500, 500));
+        setResizable(false);
         setSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
@@ -78,7 +79,7 @@ public class RealMenu extends javax.swing.JFrame {
         getContentPane().add(jButton4);
         jButton4.setBounds(190, 290, 130, 23);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\1667686\\Desktop\\Elite Golf Simulator\\EliteGolfSimulator\\allo.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Beast\\Desktop\\EliteGolfSimulator-master\\allo.png")); // NOI18N
         jLabel2.setText("jLabel2");
         jLabel2.setMaximumSize(new java.awt.Dimension(500, 500));
         jLabel2.setMinimumSize(new java.awt.Dimension(500, 500));
@@ -133,7 +134,7 @@ public class RealMenu extends javax.swing.JFrame {
     }
 
     public void nouvellePartie() {
-        Vue fen = new Vue(this,modele);
+        Vue fen = new Vue(modele);
         fen.setVisible(true);
         dispose();
 

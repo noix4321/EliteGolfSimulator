@@ -54,7 +54,7 @@ class Vue extends JFrame implements Observer {
 
         modele = (Modele) observable;
 
-        setResizable(false);
+        setResizable(true);
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
