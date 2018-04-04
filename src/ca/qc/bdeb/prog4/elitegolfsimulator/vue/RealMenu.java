@@ -177,7 +177,6 @@ public class RealMenu extends javax.swing.JFrame {
                 
                 setVisible(true);*/
                 nouvellePartie();
-                System.out.println("hbveby");
             }
             break;
             case NO_OPTION: { //option intermediaire du JOptionPane

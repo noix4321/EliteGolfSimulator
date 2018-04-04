@@ -164,8 +164,7 @@ class Monde extends JPanel {
     private void verifierTouche() {
         if (listKeyCodes.contains(KeyEvent.VK_SPACE)) {
             ligneForce.setPosX(ligneForce.getX());
-            ligneForce.setPosY(ligneForce.getY());
-            System.out.println(ligneForce.getPosX() + " - " + ligneForce.getPosY());
+            System.out.println(ligneForce.getPosX());
             frapperBall();
         }
     }

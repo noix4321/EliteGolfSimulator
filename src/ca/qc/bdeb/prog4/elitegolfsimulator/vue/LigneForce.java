@@ -16,7 +16,7 @@ import javax.swing.JComponent;
 public class LigneForce extends JComponent{
 
     private int deltaX = 20;
-    private int posX = 0, posY = 0;
+    private int posX = 0;
     
     public LigneForce() {
         setSize(5, 38);
@@ -51,14 +51,7 @@ public class LigneForce extends JComponent{
         this.posX = posX;
     }
 
-    public int getPosY() {
-        return posY;
-    }
-
-    public void setPosY(int posY) {
-        this.posY = posY;
-    }
-    
+  
     
     
 }
