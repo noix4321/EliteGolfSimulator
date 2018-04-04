@@ -40,9 +40,11 @@ class Monde extends JPanel {
     private int vitesseX = 50;
     private int vitesseY = -40;
     private int gravity = 1;
-    private boolean bouge = false;
+    private boolean bougeBalle = false, bougeLigneForce = true;
     private int compteur = 1;
     private Arc arc = new Arc();
+    private BarreForce barre = new BarreForce();
+    private LigneForce ligneForce = new LigneForce();
 
     public Monde(ArrayList listKeyCodes) {
 
@@ -53,15 +55,27 @@ class Monde extends JPanel {
             public void run() {
                 while (true) {
                     verifierTouche();
-                    if (bouge) {
+                    if (bougeBalle) {
+                        bougeLigneForce = false;
                         if (compteur % 3 == 0) {
-                            balle.setLocation(vitesseX + balle.getX(), vitesseY + balle.getY());
+                            balle.setLocation(balle.getVelocityX() + balle.getX(), balle.getVelocityY() + balle.getY());
+
                         }
-                        System.out.println(vitesseY);
+                        
                         compteur++;
-                        vitesseY++;
+                        balle.VelocityGrave();
+                        if (balle.getY() > 426 && balle.getX() > 500) {
+                            balle.setVelocityY(0);
+                        }
+
+                    }
+                    if (bougeLigneForce) {
+                        if (compteur % 3 == 0) {
+                            bougerLigneForce();
+                        }
                     }
 
+                    compteur++;
                     try {
                         Thread.sleep(30);
                     } catch (InterruptedException exc) {
@@ -69,6 +83,7 @@ class Monde extends JPanel {
                     }
                 }
             }
+
         };
 
         setLayout(null);
@@ -122,8 +137,20 @@ class Monde extends JPanel {
 
     }
 
+    private void bougerLigneForce() {
+
+        ligneForce.bouger();
+
+        if ((ligneForce.getX() + ligneForce.getWidth()) >= (barre.getX() + barre.getWidth())) {
+            ligneForce.setDeltaX(ligneForce.getDeltaX() * -1);
+        }
+        if (ligneForce.getX() <= barre.getX()) {
+            ligneForce.setDeltaX(ligneForce.getDeltaX() * -1);
+        }
+    }
+
     private void frapperBall() {
-        bouge = true;
+        bougeBalle = true;
 
     }
 
@@ -136,8 +163,10 @@ class Monde extends JPanel {
 
     private void verifierTouche() {
         if (listKeyCodes.contains(KeyEvent.VK_SPACE)) {
+            ligneForce.setPosX(ligneForce.getX());
+            ligneForce.setPosY(ligneForce.getY());
+            System.out.println(ligneForce.getPosX() + " - " + ligneForce.getPosY());
             frapperBall();
-
         }
     }
 
@@ -152,6 +181,11 @@ class Monde extends JPanel {
         balle.setLocation(golfeur.getX() + golfeur.getWidth() / 2, golfeur.getY() + golfeur.getHeight() - balle.getHeight());
         add(arc);
         arc.setLocation(0, 180);
+        add(ligneForce);
+        ligneForce.setLocation(5, HAUTEUR - ligneForce.getHeight() - 5);
+        add(barre);
+        barre.setLocation(5, HAUTEUR - barre.getHeight() - 5);
+
     }
 
     public int getTrou() {
