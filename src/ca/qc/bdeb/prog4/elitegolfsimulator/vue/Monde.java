@@ -56,12 +56,16 @@ class Monde extends JPanel {
                     if (bougeBalle) {
                         bougeLigneForce = false;
                         if (compteur % 3 == 0) {
-                            balle.setLocation(vitesseX + balle.getX(), vitesseY + balle.getY());
-                           // bougerLigneForce();
-                        }
-                        System.out.println(vitesseY);
+                            balle.setLocation(balle.getVelocityX() + balle.getX(), balle.getVelocityY() + balle.getY());
 
-                        vitesseY++;
+                        }
+                        
+                        compteur++;
+                        balle.VelocityGrave();
+                        if (balle.getY() > 426 && balle.getX() > 500) {
+                            balle.setVelocityY(0);
+                        }
+
                     }
                     if (bougeLigneForce) {
                         if (compteur % 3 == 0) {
@@ -131,9 +135,6 @@ class Monde extends JPanel {
         bougeBalle = true;
 
     }
-    
-
-    
 
     public void afficherPoint(int coups) {
         nbrCoups.setText("Points: " + coups);
