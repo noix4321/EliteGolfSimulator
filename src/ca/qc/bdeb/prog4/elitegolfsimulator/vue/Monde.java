@@ -28,6 +28,8 @@ class Monde extends JPanel {
     private Trou trou = new Trou();
     private Drapeau drapeau = new Drapeau();
     private Balle balle = new Balle();
+    private GrandArbre grandArbre = new GrandArbre();
+
     private boolean boolGazon = true;
     private ArrayList<Integer> listKeyCodes = new ArrayList<>();
     private Image img1 = getToolkit().getDefaultToolkit().getImage("gazon1.png");
@@ -82,6 +84,22 @@ class Monde extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        
+        for (int i = 0; i < 40; i++) {
+            Buisson buisson = new Buisson();
+            add(buisson);
+            buisson.setLocation(i * 40, HAUTEUR - HAUTEUR / 3 - buisson.getHeight() + 40);
+        }
+        
+        for (int i = 0; i < 15; i++) {
+            
+            GrandArbre grandArbre = new GrandArbre();
+            add(grandArbre);
+            grandArbre.setLocation(i * 150, HAUTEUR - HAUTEUR / 3 - grandArbre.getHeight() + 40);
+        }
+
+        
 
         g.drawImage(img3, LARGEUR - 1920, HAUTEUR - 1200, this);
         for (int i = 0; i < LARGEUR; i += 16) {

@@ -59,16 +59,16 @@ public class RealMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(190, 200, 130, 23);
+        jButton1.setBounds(190, 200, 130, 29);
 
         jButton2.setText("Options...");
         jButton2.setAlignmentY(0.0F);
         getContentPane().add(jButton2);
-        jButton2.setBounds(190, 230, 130, 23);
+        jButton2.setBounds(190, 230, 130, 29);
 
         jButton3.setText("Info...");
         getContentPane().add(jButton3);
-        jButton3.setBounds(190, 260, 130, 23);
+        jButton3.setBounds(190, 260, 130, 29);
 
         jButton4.setText("Quitter");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +77,7 @@ public class RealMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(190, 290, 130, 23);
+        jButton4.setBounds(190, 290, 130, 29);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ca/qc/bdeb/prog4/elitegolfsimulator/vue/allo.png"))); // NOI18N
         jLabel2.setText("jLabel2");
