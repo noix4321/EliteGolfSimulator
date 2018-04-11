@@ -13,6 +13,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import javafx.scene.control.SplitPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -62,7 +63,7 @@ class Monde extends JPanel {
                             balle.setLocation(balle.getVelocityX() + balle.getX(), balle.getVelocityY() + balle.getY());
 
                         }
-
+                        System.out.println(trou.getY());
                         compteur++;
 
 
@@ -78,6 +79,10 @@ class Monde extends JPanel {
                         golfeur.setLocation(balle.getX() - 100, balle.getY() - golfeur.getHeight());
                         bougeBalle = false;
                         bougeLigneForce = true;
+                    }
+
+                    if (balle.getBounds().intersects(trou.getBounds())) {
+                        JOptionPane.showConfirmDialog(null, "you won!");
                     }
 
                     if (bougeLigneForce) {

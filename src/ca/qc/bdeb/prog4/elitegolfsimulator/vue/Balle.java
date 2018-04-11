@@ -41,7 +41,7 @@ public class Balle extends JComponent {
     }
 
     public void bouger() {
-        //setLocation(getX() + deltaX, getY() + deltaY);
+
         if (monter) {
             setLocation(getX() + posX, getY() - posY);
         } else if (!monter) {
