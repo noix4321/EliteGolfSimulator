@@ -29,7 +29,7 @@ class Monde extends JPanel {
     private Drapeau drapeau = new Drapeau();
     private Balle balle = new Balle();
     private GrandArbre grandArbre = new GrandArbre();
-
+    private boolean tire;
     private boolean boolGazon = true;
     private ArrayList<Integer> listKeyCodes = new ArrayList<>();
     private Image img1 = getToolkit().getDefaultToolkit().getImage("gazon1.png");
@@ -56,19 +56,26 @@ class Monde extends JPanel {
                 while (true) {
                     verifierTouche();
                     if (bougeBalle) {
+
                         bougeLigneForce = false;
                         if (compteur % 3 == 0) {
                             balle.setLocation(balle.getVelocityX() + balle.getX(), balle.getVelocityY() + balle.getY());
 
                         }
-                        
+
                         compteur++;
                         balle.VelocityGrave();
-                        if (balle.getY() > 426 && balle.getX() > 500) {
-                            balle.setVelocityY(0);
-                        }
-
                     }
+
+                    if (balle.getY() >= 450) {
+                        balle.setVelocityY(0);
+                        balle.setVelocityX(0);
+                        balle.setLocation(balle.getX(), balle.getY() - 20);
+                        golfeur.setLocation(balle.getX() - 100, balle.getY() - golfeur.getHeight());
+                        bougeBalle = false;
+                        bougeLigneForce = true;
+                    }
+
                     if (bougeLigneForce) {
                         if (compteur % 3 == 0) {
                             bougerLigneForce();
@@ -100,21 +107,18 @@ class Monde extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        
         for (int i = 0; i < 40; i++) {
             Buisson buisson = new Buisson();
             add(buisson);
             buisson.setLocation(i * 40, HAUTEUR - HAUTEUR / 3 - buisson.getHeight() + 40);
         }
-        
+
         for (int i = 0; i < 15; i++) {
-            
+
             GrandArbre grandArbre = new GrandArbre();
             add(grandArbre);
             grandArbre.setLocation(i * 150, HAUTEUR - HAUTEUR / 3 - grandArbre.getHeight() + 40);
         }
-
-        
 
         g.drawImage(img3, LARGEUR - 1920, HAUTEUR - 1200, this);
         for (int i = 0; i < LARGEUR; i += 16) {
@@ -166,8 +170,11 @@ class Monde extends JPanel {
             ligneForce.setPosX(ligneForce.getX());
             ligneForce.setPosY(ligneForce.getY());
             System.out.println(ligneForce.getPosX() + " - " + ligneForce.getPosY());
+            System.out.println(golfeur.getY());
+            balle.resetVelocitys();
             frapperBall();
         }
+
     }
 
     private void mettreGolfeurTrouDrapeau() {
