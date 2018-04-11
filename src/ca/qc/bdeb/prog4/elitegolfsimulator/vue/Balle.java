@@ -73,7 +73,11 @@ public class Balle extends JComponent {
     }
 
     public void VelocityGrave() {
-        this.velocityY++;
+        this.velocityY = velocityY + gravity;
+    }
+
+    public void setGravity(int grav) {
+        this.gravity = grav;
     }
 
     public void setVelocityY(int velocityY) {
@@ -121,5 +125,4 @@ public class Balle extends JComponent {
         this.posY = posY;
     }
 
-    
 }
