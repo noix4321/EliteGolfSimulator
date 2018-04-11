@@ -61,7 +61,7 @@ class Monde extends JPanel {
                             balle.setLocation(balle.getVelocityX() + balle.getX(), balle.getVelocityY() + balle.getY());
 
                         }
-                        
+
                         compteur++;
                         balle.VelocityGrave();
                         if (balle.getY() > 426 && balle.getX() > 500) {
@@ -100,21 +100,18 @@ class Monde extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        
         for (int i = 0; i < 40; i++) {
             Buisson buisson = new Buisson();
             add(buisson);
             buisson.setLocation(i * 40, HAUTEUR - HAUTEUR / 3 - buisson.getHeight() + 40);
         }
-        
+
         for (int i = 0; i < 15; i++) {
-            
+
             GrandArbre grandArbre = new GrandArbre();
             add(grandArbre);
             grandArbre.setLocation(i * 150, HAUTEUR - HAUTEUR / 3 - grandArbre.getHeight() + 40);
         }
-
-        
 
         g.drawImage(img3, LARGEUR - 1920, HAUTEUR - 1200, this);
         for (int i = 0; i < LARGEUR; i += 16) {
@@ -164,7 +161,7 @@ class Monde extends JPanel {
     private void verifierTouche() {
         if (listKeyCodes.contains(KeyEvent.VK_SPACE)) {
             ligneForce.setPosX(ligneForce.getX());
-            System.out.println(ligneForce.getPosX());
+            calculerForce(ligneForce.getPosX());
             frapperBall();
         }
     }
@@ -185,6 +182,16 @@ class Monde extends JPanel {
         add(barre);
         barre.setLocation(5, HAUTEUR - barre.getHeight() - 5);
 
+    }
+
+    private void calculerForce(int force) {
+        switch (force) {
+            case (force <= 16):
+                System.out.println("");
+            
+            break;
+
+        }
     }
 
     public int getTrou() {

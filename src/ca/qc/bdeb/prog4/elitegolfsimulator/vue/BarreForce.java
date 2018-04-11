@@ -16,10 +16,9 @@ import javax.swing.JComponent;
 public class BarreForce extends JComponent {
 
     Image imgD = getToolkit().getDefaultToolkit().getImage("BarreForceVersDroite.PNG");
-    Image imgG = getToolkit().getDefaultToolkit().getImage("BarreForceVersGauche.PNG");
 
     public BarreForce() {
-        setSize(210, 38);
+        setSize(105, 38);
     }
 
     @Override
@@ -27,7 +26,6 @@ public class BarreForce extends JComponent {
         super.paintComponent(g);
 
         g.drawImage(imgD, 0, 0, this);
-        g.drawImage(imgG, 105, 0, this);
 
     }
 }

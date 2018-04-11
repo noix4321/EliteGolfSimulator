@@ -8,6 +8,8 @@ package ca.qc.bdeb.prog4.elitegolfsimulator.vue;
 import ca.qc.bdeb.prog4.elitegolfsimulator.modele.Modele;
 import ca.qc.bdeb.prog4.elitegolfsimulator.vue.Monde;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -81,6 +84,39 @@ class Vue extends JFrame implements Observer {
             @Override
             public void keyReleased(KeyEvent e) {
                 listKeyCodes.remove(new Integer(e.getKeyCode()));
+            }
+        });
+        
+        mnuInstructions.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 JOptionPane.showMessageDialog(null, "Appuyer une première fois sur la touche espace pour choisir la force de votre"
+                         + "frappe, puis une deuxième fois pour ajuster l'angle de votre frappe.", "Instructions",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        
+        mnuRegles.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 JOptionPane.showMessageDialog(null, "Le but du jeu est d'enoyer la balle dans le trou en la frappant le moins de fois possible. "
+                         + "La parabole de votre balle varie en fonction du type de bâton choisi. Prenez garde au vent!", "Règles",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        
+        mnuDifficulté.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 Object[] options = {"Debutant", "Intermediaire", "Avance", "Expert"};
+        int optionPane = JOptionPane.showOptionDialog(null,
+                "Choisisser une difficulté?",
+                "Menu option",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[1]);
             }
         });
     }

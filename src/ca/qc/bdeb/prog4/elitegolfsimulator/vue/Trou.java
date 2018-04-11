@@ -15,14 +15,14 @@ import javax.swing.JComponent;
 public class Trou extends JComponent{
 
     public Trou() {
-        setSize(15, 15);
+        setSize(15, 5);
     }
     
      @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); 
         
-        g.fillOval(0, 0, 15, 15);
+        g.fillOval(0, 0, 15, 5);
     }
     
 }

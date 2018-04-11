@@ -59,16 +59,21 @@ public class RealMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(190, 200, 130, 29);
+        jButton1.setBounds(190, 200, 130, 23);
 
         jButton2.setText("Options...");
         jButton2.setAlignmentY(0.0F);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
-        jButton2.setBounds(190, 230, 130, 29);
+        jButton2.setBounds(190, 230, 130, 23);
 
         jButton3.setText("Info...");
         getContentPane().add(jButton3);
-        jButton3.setBounds(190, 260, 130, 29);
+        jButton3.setBounds(190, 260, 130, 23);
 
         jButton4.setText("Quitter");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +82,7 @@ public class RealMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(190, 290, 130, 29);
+        jButton4.setBounds(190, 290, 130, 23);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ca/qc/bdeb/prog4/elitegolfsimulator/vue/allo.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -97,6 +102,10 @@ public class RealMenu extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,7 +176,7 @@ public class RealMenu extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 options,
-                options[3]);
+                options[1]);
 
         switch (optionPane) {
             case YES_OPTION: { //option debutant du JOptionPane
