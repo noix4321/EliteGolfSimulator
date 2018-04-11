@@ -80,12 +80,21 @@ public class Balle extends JComponent {
         this.velocityY = velocityY;
     }
 
+    public void setVelocityX(int velocityX) {
+        this.velocityX = velocityX;
+    }
+
     public int getVelocityY() {
         return velocityY;
     }
 
     public int getGravity() {
         return gravity;
+    }
+
+    public void resetVelocitys() {
+        velocityX = 30;
+        velocityY = -40;
     }
 
     public double getDeltaX() {
@@ -112,4 +121,5 @@ public class Balle extends JComponent {
         this.posY = posY;
     }
 
+    
 }

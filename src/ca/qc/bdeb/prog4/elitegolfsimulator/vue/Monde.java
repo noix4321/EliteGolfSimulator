@@ -29,7 +29,7 @@ class Monde extends JPanel {
     private Drapeau drapeau = new Drapeau();
     private Balle balle = new Balle();
     private GrandArbre grandArbre = new GrandArbre();
-
+    private boolean tire;
     private boolean boolGazon = true;
     private ArrayList<Integer> listKeyCodes = new ArrayList<>();
     private Image img1 = getToolkit().getDefaultToolkit().getImage("gazon1.png");
@@ -56,6 +56,7 @@ class Monde extends JPanel {
                 while (true) {
                     verifierTouche();
                     if (bougeBalle) {
+
                         bougeLigneForce = false;
                         if (compteur % 3 == 0) {
                             balle.setLocation(balle.getVelocityX() + balle.getX(), balle.getVelocityY() + balle.getY());
@@ -63,12 +64,22 @@ class Monde extends JPanel {
                         }
 
                         compteur++;
-                        balle.VelocityGrave();
-                        if (balle.getY() > 426 && balle.getX() > 500) {
-                            balle.setVelocityY(0);
-                        }
+
+
+                            balle.VelocityGrave();
+
 
                     }
+
+                    if (balle.getY() >= 450) {
+                        balle.setVelocityY(0);
+                        balle.setVelocityX(0);
+                        balle.setLocation(balle.getX(), balle.getY() - 20);
+                        golfeur.setLocation(balle.getX() - 100, balle.getY() - golfeur.getHeight());
+                        bougeBalle = false;
+                        bougeLigneForce = true;
+                    }
+
                     if (bougeLigneForce) {
                         if (compteur % 3 == 0) {
                             bougerLigneForce();
@@ -162,8 +173,13 @@ class Monde extends JPanel {
         if (listKeyCodes.contains(KeyEvent.VK_SPACE)) {
             ligneForce.setPosX(ligneForce.getX());
             calculerForce(ligneForce.getPosX());
+//            ligneForce.setPosY(ligneForce.getY());
+//            System.out.println(ligneForce.getPosX() + " - " + ligneForce.getPosY());
+            System.out.println(golfeur.getY());
+//            balle.resetVelocitys();
             frapperBall();
         }
+
     }
 
     private void mettreGolfeurTrouDrapeau() {
@@ -185,13 +201,28 @@ class Monde extends JPanel {
     }
 
     private void calculerForce(int force) {
-        switch (force) {
-            case (force <= 16):
-                System.out.println("");
-            
-            break;
 
+        if (balle.getX() > (trou.getX() - 300)) {
+            balle.setVelocityY(0);
+        } else {
+            balle.setVelocityY(-40);
         }
+
+        int forceBarre = 0;
+        if (force <= 15) {
+            forceBarre = 1;
+        } else if (force <= 34) {
+            forceBarre = 2;
+        } else if (force <= 55) {
+            forceBarre = 3;
+        } else if (force <= 78) {
+            forceBarre = 4;
+        } else if (forceBarre <= 104) {
+            forceBarre = 5;
+        } else {
+            forceBarre = 6;
+        }
+        balle.setVelocityX(forceBarre * 5);
     }
 
     public int getTrou() {
