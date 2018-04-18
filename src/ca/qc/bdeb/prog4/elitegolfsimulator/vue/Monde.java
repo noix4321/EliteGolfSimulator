@@ -21,7 +21,7 @@ import javax.swing.JPanel;
  * @author 1533727
  */
 class Monde extends JPanel {
-
+    
     private final int HAUTEUR = 600, LARGEUR = 1500;
     private int coups = 0, trous = 1;
     //private Vue vue = new Vue();
@@ -46,32 +46,30 @@ class Monde extends JPanel {
     private Arc arc = new Arc();
     private BarreForce barre = new BarreForce();
     private LigneForce ligneForce = new LigneForce();
-
+    
     public Monde(ArrayList listKeyCodes) {
-
+        
         this.listKeyCodes = listKeyCodes;
-
+        
         this.thread = new Thread() {
             @Override
             public void run() {
                 while (true) {
                     verifierTouche();
                     if (bougeBalle) {
-
+                        
                         bougeLigneForce = false;
                         if (compteur % 3 == 0) {
                             balle.setLocation(balle.getVelocityX() + balle.getX(), balle.getVelocityY() + balle.getY());
-
+                            
                         }
                         System.out.println(trou.getY());
                         compteur++;
-
-
-                            balle.VelocityGrave();
-
-
+                        
+                        balle.VelocityGrave();
+                        
                     }
-
+                    
                     if (balle.getY() >= 450) {
                         balle.setVelocityY(0);
                         balle.setVelocityX(0);
@@ -80,80 +78,80 @@ class Monde extends JPanel {
                         bougeBalle = false;
                         bougeLigneForce = true;
                     }
-
+                    
                     if (balle.getBounds().intersects(trou.getBounds())) {
                         JOptionPane.showConfirmDialog(null, "you won!");
                     }
-
+                    
                     if (bougeLigneForce) {
                         if (compteur % 3 == 0) {
                             bougerLigneForce();
                         }
                     }
-
+                    
                     compteur++;
                     try {
                         Thread.sleep(30);
                     } catch (InterruptedException exc) {
-
+                        
                     }
                 }
             }
-
+            
         };
-
+        
         setLayout(null);
-
+        
         afficherPoint(0);
-
+        
         setPreferredSize(new Dimension(LARGEUR, HAUTEUR));
         mettreGolfeurTrouDrapeau();
         thread.start();
         setVisible(true);
     }
-
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        
         for (int i = 0; i < 40; i++) {
             Buisson buisson = new Buisson();
             add(buisson);
             buisson.setLocation(i * 40, HAUTEUR - HAUTEUR / 3 - buisson.getHeight() + 40);
         }
-
+        
         for (int i = 0; i < 15; i++) {
-
+            
             GrandArbre grandArbre = new GrandArbre();
             add(grandArbre);
             grandArbre.setLocation(i * 150, HAUTEUR - HAUTEUR / 3 - grandArbre.getHeight() + 40);
         }
-
+        
         g.drawImage(img3, LARGEUR - 1920, HAUTEUR - 1200, this);
         for (int i = 0; i < LARGEUR; i += 16) {
             for (int j = HAUTEUR - HAUTEUR / 3; j < HAUTEUR; j += 16) {
-
+                
                 if (boolGazon) {
                     g.drawImage(img1, i, j, this);
                 } else {
                     g.drawImage(img2, i, j, this);
                 }
-
+                
                 if (boolGazon) {
                     boolGazon = false;
                 } else {
                     boolGazon = true;
                 }
-
+                
             }
         }
-
+        
     }
-
+    
     private void bougerLigneForce() {
-
+        
         ligneForce.bouger();
-
+        
         if ((ligneForce.getX() + ligneForce.getWidth()) >= (barre.getX() + barre.getWidth())) {
             ligneForce.setDeltaX(ligneForce.getDeltaX() * -1);
         }
@@ -161,19 +159,19 @@ class Monde extends JPanel {
             ligneForce.setDeltaX(ligneForce.getDeltaX() * -1);
         }
     }
-
+    
     private void frapperBall() {
         bougeBalle = true;
-
+        
     }
-
+    
     public void afficherPoint(int coups) {
         nbrCoups.setText("Points: " + coups);
         nbrCoups.setSize(100, 60);
         this.add(nbrCoups);
         nbrCoups.setLocation(200, 2 - 0);
     }
-
+    
     private void verifierTouche() {
         if (listKeyCodes.contains(KeyEvent.VK_SPACE)) {
             ligneForce.setPosX(ligneForce.getX());
@@ -184,9 +182,9 @@ class Monde extends JPanel {
 //            balle.resetVelocitys();
             frapperBall();
         }
-
+        
     }
-
+    
     private void mettreGolfeurTrouDrapeau() {
         add(golfeur);
         golfeur.setLocation(0, 3 * HAUTEUR / 4 - golfeur.getHeight());
@@ -202,17 +200,18 @@ class Monde extends JPanel {
         ligneForce.setLocation(5, HAUTEUR - ligneForce.getHeight() - 5);
         add(barre);
         barre.setLocation(5, HAUTEUR - barre.getHeight() - 5);
-
+        
     }
-
+    
     private void calculerForce(int force) {
-
+        
         if (balle.getX() > (trou.getX() - 300)) {
             balle.setVelocityY(0);
+            balle.setGravity(0);
         } else {
             balle.setVelocityY(-40);
         }
-
+        
         int forceBarre = 0;
         if (force <= 15) {
             forceBarre = 1;
@@ -229,29 +228,29 @@ class Monde extends JPanel {
         }
         balle.setVelocityX(forceBarre * 5);
     }
-
+    
     public int getTrou() {
         return trous;
     }
-
+    
     public JLabel getnbrCoups() {
         return nbrCoups;
     }
-
+    
     public int getCoups() {
         return coups;
     }
-
+    
     public int getLARGEUR() {
         return LARGEUR;
     }
-
+    
     public int getHAUTEUR() {
         return HAUTEUR;
     }
-
+    
     public void initialisateur() {
         balle.setHAUTEUR(HAUTEUR);
     }
-
+    
 }
