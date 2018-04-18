@@ -101,18 +101,19 @@ class Monde extends JPanel {
         super.paintComponent(g);
 
         
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 5; i++) {
             Buisson buisson = new Buisson();
             add(buisson);
             buisson.setLocation(i * 40, HAUTEUR - HAUTEUR / 3 - buisson.getHeight() + 40);
         }
         
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 10; i++) {
             
             GrandArbre grandArbre = new GrandArbre();
             add(grandArbre);
-            grandArbre.setLocation(i * 150, HAUTEUR - HAUTEUR / 3 - grandArbre.getHeight() + 40);
+            grandArbre.setLocation(i * 200, HAUTEUR - HAUTEUR / 3 - grandArbre.getHeight() + 40);
         }
+       
 
         
 
@@ -185,6 +186,10 @@ class Monde extends JPanel {
         ligneForce.setLocation(5, HAUTEUR - ligneForce.getHeight() - 5);
         add(barre);
         barre.setLocation(5, HAUTEUR - barre.getHeight() - 5);
+         
+        Sable sable = new Sable();
+        add(sable);
+        sable.setLocation(700, 450);
 
     }
 
