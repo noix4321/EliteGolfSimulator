@@ -13,6 +13,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import javafx.scene.control.SplitPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -29,7 +30,7 @@ class Monde extends JPanel {
     private Drapeau drapeau = new Drapeau();
     private Balle balle = new Balle();
     private GrandArbre grandArbre = new GrandArbre();
-
+    private boolean tire;
     private boolean boolGazon = true;
     private ArrayList<Integer> listKeyCodes = new ArrayList<>();
     private Image img1 = getToolkit().getDefaultToolkit().getImage("gazon1.png");
@@ -56,19 +57,34 @@ class Monde extends JPanel {
                 while (true) {
                     verifierTouche();
                     if (bougeBalle) {
+
                         bougeLigneForce = false;
                         if (compteur % 3 == 0) {
                             balle.setLocation(balle.getVelocityX() + balle.getX(), balle.getVelocityY() + balle.getY());
 
                         }
-                        
+                        System.out.println(trou.getY());
                         compteur++;
-                        balle.VelocityGrave();
-                        if (balle.getY() > 426 && balle.getX() > 500) {
-                            balle.setVelocityY(0);
-                        }
+
+
+                            balle.VelocityGrave();
+
 
                     }
+
+                    if (balle.getY() >= 450) {
+                        balle.setVelocityY(0);
+                        balle.setVelocityX(0);
+                        balle.setLocation(balle.getX(), balle.getY() - 20);
+                        golfeur.setLocation(balle.getX() - 100, balle.getY() - golfeur.getHeight());
+                        bougeBalle = false;
+                        bougeLigneForce = true;
+                    }
+
+                    if (balle.getBounds().intersects(trou.getBounds())) {
+                        JOptionPane.showConfirmDialog(null, "you won!");
+                    }
+
                     if (bougeLigneForce) {
                         if (compteur % 3 == 0) {
                             bougerLigneForce();
@@ -106,9 +122,9 @@ class Monde extends JPanel {
             add(buisson);
             buisson.setLocation(i * 40, HAUTEUR - HAUTEUR / 3 - buisson.getHeight() + 40);
         }
-        
-        for (int i = 0; i < 10; i++) {
-            
+
+        for (int i = 0; i < 15; i++) {
+
             GrandArbre grandArbre = new GrandArbre();
             add(grandArbre);
             grandArbre.setLocation(i * 200, HAUTEUR - HAUTEUR / 3 - grandArbre.getHeight() + 40);
@@ -165,10 +181,14 @@ class Monde extends JPanel {
     private void verifierTouche() {
         if (listKeyCodes.contains(KeyEvent.VK_SPACE)) {
             ligneForce.setPosX(ligneForce.getX());
-            ligneForce.setPosY(ligneForce.getY());
-            System.out.println(ligneForce.getPosX() + " - " + ligneForce.getPosY());
+            calculerForce(ligneForce.getPosX());
+//            ligneForce.setPosY(ligneForce.getY());
+//            System.out.println(ligneForce.getPosX() + " - " + ligneForce.getPosY());
+            System.out.println(golfeur.getY());
+//            balle.resetVelocitys();
             frapperBall();
         }
+
     }
 
     private void mettreGolfeurTrouDrapeau() {
@@ -191,6 +211,31 @@ class Monde extends JPanel {
         add(sable);
         sable.setLocation(700, 450);
 
+    }
+
+    private void calculerForce(int force) {
+
+        if (balle.getX() > (trou.getX() - 300)) {
+            balle.setVelocityY(0);
+        } else {
+            balle.setVelocityY(-40);
+        }
+
+        int forceBarre = 0;
+        if (force <= 15) {
+            forceBarre = 1;
+        } else if (force <= 34) {
+            forceBarre = 2;
+        } else if (force <= 55) {
+            forceBarre = 3;
+        } else if (force <= 78) {
+            forceBarre = 4;
+        } else if (forceBarre <= 104) {
+            forceBarre = 5;
+        } else {
+            forceBarre = 6;
+        }
+        balle.setVelocityX(forceBarre * 5);
     }
 
     public int getTrou() {

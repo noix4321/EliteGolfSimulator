@@ -41,7 +41,7 @@ public class Balle extends JComponent {
     }
 
     public void bouger() {
-        //setLocation(getX() + deltaX, getY() + deltaY);
+
         if (monter) {
             setLocation(getX() + posX, getY() - posY);
         } else if (!monter) {
@@ -73,11 +73,19 @@ public class Balle extends JComponent {
     }
 
     public void VelocityGrave() {
-        this.velocityY++;
+        this.velocityY = velocityY + gravity;
+    }
+
+    public void setGravity(int grav) {
+        this.gravity = grav;
     }
 
     public void setVelocityY(int velocityY) {
         this.velocityY = velocityY;
+    }
+
+    public void setVelocityX(int velocityX) {
+        this.velocityX = velocityX;
     }
 
     public int getVelocityY() {
@@ -86,6 +94,11 @@ public class Balle extends JComponent {
 
     public int getGravity() {
         return gravity;
+    }
+
+    public void resetVelocitys() {
+        velocityX = 30;
+        velocityY = -40;
     }
 
     public double getDeltaX() {
