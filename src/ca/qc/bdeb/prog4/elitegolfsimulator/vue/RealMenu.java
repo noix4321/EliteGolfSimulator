@@ -5,11 +5,10 @@ package ca.qc.bdeb.prog4.elitegolfsimulator.vue;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import ca.qc.bdeb.prog4.elitegolfsimulator.modele.Modele;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.CANCEL_OPTION;
 import static javax.swing.JOptionPane.NO_OPTION;
@@ -21,7 +20,11 @@ import static javax.swing.JOptionPane.YES_OPTION;
  */
 public class RealMenu extends javax.swing.JFrame {
 
-    Modele modele=new Modele();
+    Modele modele = new Modele();
+    private ArrayList<Integer> listKeyCodes = new ArrayList<>();
+    Monde monde;
+
+    //MondeNiveau2 mondeniveau2;
     public RealMenu() {
         initComponents();
         evenements();
@@ -143,7 +146,7 @@ public class RealMenu extends javax.swing.JFrame {
     }
 
     public void nouvellePartie() {
-        Vue fen = new Vue(modele);
+        Vue fen = new Vue(modele,1);
         fen.setVisible(true);
         dispose();
 

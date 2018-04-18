@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 class Vue extends JFrame implements Observer {
 
     private Monde monde;
+    private MondeNiveau2 mondeNiveau2;
     private Modele modele;
     private JPanel pnlNord = new JPanel();
     //private JLabel lblCoups = new JLabel("Coups : " + 0);
@@ -44,9 +45,19 @@ class Vue extends JFrame implements Observer {
     private JMenuItem mnuNbJoueurs = new JMenuItem("Nombre de joueurs");
     private int coups = 0;
 
-    public Vue(Observable observable) {
+    public Vue(Observable observable, int number) {
+        switch (number) {
+            case 1:
+                monde = new Monde(listKeyCodes);
+                break;
+            case 2:
+                mondeNiveau2 = new MondeNiveau2(listKeyCodes);
+                break;
+            default:
 
+        }
         monde = new Monde(listKeyCodes);
+
         setTitle("Elite Golf Simulator");
         setVisible(true);
         setLayout(new BorderLayout());
@@ -86,37 +97,37 @@ class Vue extends JFrame implements Observer {
                 listKeyCodes.remove(new Integer(e.getKeyCode()));
             }
         });
-        
+
         mnuInstructions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 JOptionPane.showMessageDialog(null, "Appuyer une première fois sur la touche espace pour choisir la force de votre"
-                         + "frappe, puis une deuxième fois pour ajuster l'angle de votre frappe.", "Instructions",
+                JOptionPane.showMessageDialog(null, "Appuyer une première fois sur la touche espace pour choisir la force de votre"
+                        + "frappe, puis une deuxième fois pour ajuster l'angle de votre frappe.", "Instructions",
                         JOptionPane.INFORMATION_MESSAGE);
             }
         });
-        
+
         mnuRegles.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 JOptionPane.showMessageDialog(null, "Le but du jeu est d'enoyer la balle dans le trou en la frappant le moins de fois possible. "
-                         + "La parabole de votre balle varie en fonction du type de bâton choisi. Prenez garde au vent!", "Règles",
+                JOptionPane.showMessageDialog(null, "Le but du jeu est d'enoyer la balle dans le trou en la frappant le moins de fois possible. "
+                        + "La parabole de votre balle varie en fonction du type de bâton choisi. Prenez garde au vent!", "Règles",
                         JOptionPane.INFORMATION_MESSAGE);
             }
         });
-        
+
         mnuDifficulté.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 Object[] options = {"Debutant", "Intermediaire", "Avance", "Expert"};
-        int optionPane = JOptionPane.showOptionDialog(null,
-                "Choisisser une difficulté?",
-                "Menu option",
-                JOptionPane.YES_NO_CANCEL_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                options,
-                options[1]);
+                Object[] options = {"Debutant", "Intermediaire", "Avance", "Expert"};
+                int optionPane = JOptionPane.showOptionDialog(null,
+                        "Choisisser une difficulté?",
+                        "Menu option",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
             }
         });
     }
