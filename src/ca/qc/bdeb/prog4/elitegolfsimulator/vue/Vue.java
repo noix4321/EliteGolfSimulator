@@ -51,7 +51,7 @@ class Vue extends JFrame implements Observer {
                 monde = new Monde(listKeyCodes);
                 break;
             case 2:
-                mondeNiveau2 = new MondeNiveau2(listKeyCodes);
+                mondeNiveau2 = new MondeNiveau2(listKeyCodes);                
                 break;
             default:
 
@@ -79,6 +79,17 @@ class Vue extends JFrame implements Observer {
         add(monde);
         //pnlNord.add(lblCoups, BorderLayout.WEST);
         pnlNord.add(lblTrou, BorderLayout.EAST);
+    }
+    
+    public void mettrepaneaux(){
+        getContentPane().removeAll();
+        pnlNord.setLayout(new BorderLayout());
+        add(pnlNord, BorderLayout.NORTH);
+        add(mondeNiveau2);
+        //pnlNord.add(lblCoups, BorderLayout.WEST);
+        pnlNord.add(lblTrou, BorderLayout.EAST);
+        validate();
+        repaint();
     }
 
     private void creerEvenements() {

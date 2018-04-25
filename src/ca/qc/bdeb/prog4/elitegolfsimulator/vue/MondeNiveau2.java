@@ -5,6 +5,8 @@
  */
 package ca.qc.bdeb.prog4.elitegolfsimulator.vue;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -14,16 +16,28 @@ import javax.swing.JPanel;
  */
 public class MondeNiveau2 extends Monde {
 
-    public ArrayList<Integer> listKeyCodes = new ArrayList<>();
+    //public ArrayList<Integer> listKeyCodes = new ArrayList<>();
 
     public MondeNiveau2(ArrayList listKeyCodes) {
         super(listKeyCodes);
-
+        
 
     }
+    
+    
     
 //    public Monde(ArrayList listKeyCodes) {
 //
 //        this.listKeyCodes = listKeyCodes;
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
+        
+        g.setColor(Color.red);
+        g.drawRect(50, 50, 50, 50);
+        
+        
+    }
 
 }
