@@ -146,7 +146,7 @@ public class RealMenu extends javax.swing.JFrame {
     }
 
     public void nouvellePartie() {
-        Vue fen = new Vue(modele,1);
+        Vue fen = new Vue(modele);
         fen.setVisible(true);
         dispose();
 

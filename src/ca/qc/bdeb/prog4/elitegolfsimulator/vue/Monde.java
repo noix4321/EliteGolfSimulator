@@ -41,7 +41,6 @@ class Monde extends JPanel {
     private Image img2 = getToolkit().getDefaultToolkit().getImage("gazon2.png");
     private Image img3 = getToolkit().getDefaultToolkit().getImage("ciel.png");
     private JLabel nbrCoups = new JLabel();
-    private Thread thread;
     private int vitesseX = 50;
     private int vitesseY = -40;
     private int gravity = 1;
@@ -50,84 +49,14 @@ class Monde extends JPanel {
     private Arc arc = new Arc();
     private BarreForce barre = new BarreForce();
     private LigneForce ligneForce = new LigneForce();
-    
-    
-    public Monde(ArrayList listKeyCodes) {
 
-        this.listKeyCodes = listKeyCodes;
-
-        this.thread = new Thread() {
-            @Override
-            public void run() {
-                while (true) {
-                    verifierTouche();
-                    if (bougeBalle) {
-
-                        bougeLigneForce = false;
-                        if (compteur % 3 == 0) {
-                            balle.setLocation(balle.getVelocityX() + balle.getX(), balle.getY());
-                            //balle.getVelocityY() + balle.getY()
-                        }
-                        System.out.println(trou.getY());
-                        compteur++;
-
-                        //balle.VelocityGrave();
-                    }
-
-                    if (balle.getY() >= 450) {
-                        balle.setVelocityY(0);
-                        balle.setVelocityX(0);
-                        balle.setLocation(balle.getX(), balle.getY() - 20);
-                        golfeur.setLocation(balle.getX() - 100, balle.getY() - golfeur.getHeight());
-                        bougeBalle = false;
-                        bougeLigneForce = true;
-                    }
-
-                    if (balle.getBounds().intersects(trou.getBounds())) {
-                        mettreGolfeurTrouDrapeau();
-                        balle.setVelocityY(0);
-                        balle.setVelocityX(0);
-                        int reply = JOptionPane.showConfirmDialog(null, "You won! want to continue?", "close?", JOptionPane.YES_NO_OPTION);
-                        if (reply == JOptionPane.YES_OPTION) {
-                            vue.mettrepaneaux();
-                            removeAll();
-                            revalidate();
-                            repaint();
-                            //vue.mettrepaneaux();
-                            //mettreGolfeurTrouDrapeau();
-                            
-                                 
-                        }
-                        if (reply == JOptionPane.NO_OPTION) {
-
-                        }
-
-                    }
-
-                    if (bougeLigneForce) {
-                        if (compteur % 3 == 0) {
-                            bougerLigneForce();
-                        }
-                    }
-
-                    compteur++;
-                    try {
-                        Thread.sleep(30);
-                    } catch (InterruptedException exc) {
-
-                    }
-                }
-            }
-
-        };
+    public Monde() {
 
         setLayout(null);
-
         afficherPoint(0);
-
         setPreferredSize(new Dimension(LARGEUR, HAUTEUR));
+
         mettreGolfeurTrouDrapeau();
-        thread.start();
         setVisible(true);
     }
 
@@ -169,41 +98,11 @@ class Monde extends JPanel {
 
     }
 
-    private void bougerLigneForce() {
-
-        ligneForce.bouger();
-
-        if ((ligneForce.getX() + ligneForce.getWidth()) >= (barre.getX() + barre.getWidth())) {
-            ligneForce.setDeltaX(ligneForce.getDeltaX() * -1);
-        }
-        if (ligneForce.getX() <= barre.getX()) {
-            ligneForce.setDeltaX(ligneForce.getDeltaX() * -1);
-        }
-    }
-
-    private void frapperBall() {
-        bougeBalle = true;
-
-    }
-
     public void afficherPoint(int coups) {
         nbrCoups.setText("Points: " + coups);
         nbrCoups.setSize(100, 60);
         this.add(nbrCoups);
         nbrCoups.setLocation(200, 2 - 0);
-    }
-
-    private void verifierTouche() {
-        if (listKeyCodes.contains(KeyEvent.VK_SPACE)) {
-            ligneForce.setPosX(ligneForce.getX());
-            calculerForce(ligneForce.getPosX());
-//            ligneForce.setPosY(ligneForce.getY());
-//            System.out.println(ligneForce.getPosX() + " - " + ligneForce.getPosY());
-            System.out.println(golfeur.getY());
-//            balle.resetVelocitys();
-            frapperBall();
-        }
-
     }
 
     private void mettreGolfeurTrouDrapeau() {
@@ -221,7 +120,6 @@ class Monde extends JPanel {
         ligneForce.setLocation(5, HAUTEUR - ligneForce.getHeight() - 5);
         add(barre);
         barre.setLocation(5, HAUTEUR - barre.getHeight() - 5);
-
     }
 
     private void calculerForce(int force) {
@@ -274,4 +172,14 @@ class Monde extends JPanel {
         balle.setHAUTEUR(HAUTEUR);
     }
 
+    public LigneForce getLigneForce() {
+        return ligneForce;
+    }
+
+    public BarreForce getBarre() {
+        return barre;
+    }
+
+    
+    
 }

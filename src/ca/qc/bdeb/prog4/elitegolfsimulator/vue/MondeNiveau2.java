@@ -19,16 +19,14 @@ public class MondeNiveau2 extends Monde {
     //public ArrayList<Integer> listKeyCodes = new ArrayList<>();
 
     public MondeNiveau2(ArrayList listKeyCodes) {
-        super(listKeyCodes);
+        //super(listKeyCodes);
         
 
     }
     
     
     
-//    public Monde(ArrayList listKeyCodes) {
-//
-//        this.listKeyCodes = listKeyCodes;
+
 
     @Override
     protected void paintComponent(Graphics g) {
